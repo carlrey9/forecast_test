@@ -45,6 +45,7 @@ mixin _$WheaterModel {
   double get soil_temp => throw _privateConstructorUsedError;
   double get uv_index => throw _privateConstructorUsedError;
   double get wind_gust => throw _privateConstructorUsedError;
+  String get urlIcon => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -83,7 +84,8 @@ abstract class $WheaterModelCopyWith<$Res> {
       double soil_moisture,
       double soil_temp,
       double uv_index,
-      double wind_gust});
+      double wind_gust,
+      String urlIcon});
 }
 
 /// @nodoc
@@ -124,6 +126,7 @@ class _$WheaterModelCopyWithImpl<$Res, $Val extends WheaterModel>
     Object? soil_temp = null,
     Object? uv_index = null,
     Object? wind_gust = null,
+    Object? urlIcon = null,
   }) {
     return _then(_value.copyWith(
       obs_time: null == obs_time
@@ -226,6 +229,10 @@ class _$WheaterModelCopyWithImpl<$Res, $Val extends WheaterModel>
           ? _value.wind_gust
           : wind_gust // ignore: cast_nullable_to_non_nullable
               as double,
+      urlIcon: null == urlIcon
+          ? _value.urlIcon
+          : urlIcon // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -263,7 +270,8 @@ abstract class _$$WheaterModelImplCopyWith<$Res>
       double soil_moisture,
       double soil_temp,
       double uv_index,
-      double wind_gust});
+      double wind_gust,
+      String urlIcon});
 }
 
 /// @nodoc
@@ -302,6 +310,7 @@ class __$$WheaterModelImplCopyWithImpl<$Res>
     Object? soil_temp = null,
     Object? uv_index = null,
     Object? wind_gust = null,
+    Object? urlIcon = null,
   }) {
     return _then(_$WheaterModelImpl(
       obs_time: null == obs_time
@@ -404,6 +413,10 @@ class __$$WheaterModelImplCopyWithImpl<$Res>
           ? _value.wind_gust
           : wind_gust // ignore: cast_nullable_to_non_nullable
               as double,
+      urlIcon: null == urlIcon
+          ? _value.urlIcon
+          : urlIcon // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -416,7 +429,7 @@ class _$WheaterModelImpl implements _WheaterModel {
       required this.uptime,
       required this.temp,
       required this.feels_like,
-      required this.temp_water,
+      this.temp_water = 0.0,
       required this.icon,
       required this.condition,
       required this.cloudness,
@@ -436,7 +449,8 @@ class _$WheaterModelImpl implements _WheaterModel {
       required this.soil_moisture,
       required this.soil_temp,
       required this.uv_index,
-      required this.wind_gust});
+      required this.wind_gust,
+      this.urlIcon = ""});
 
   factory _$WheaterModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$WheaterModelImplFromJson(json);
@@ -450,6 +464,7 @@ class _$WheaterModelImpl implements _WheaterModel {
   @override
   final double feels_like;
   @override
+  @JsonKey()
   final double temp_water;
   @override
   final String icon;
@@ -491,10 +506,13 @@ class _$WheaterModelImpl implements _WheaterModel {
   final double uv_index;
   @override
   final double wind_gust;
+  @override
+  @JsonKey()
+  final String urlIcon;
 
   @override
   String toString() {
-    return 'WheaterModel(obs_time: $obs_time, uptime: $uptime, temp: $temp, feels_like: $feels_like, temp_water: $temp_water, icon: $icon, condition: $condition, cloudness: $cloudness, prec_type: $prec_type, prec_prob: $prec_prob, prec_strength: $prec_strength, is_thunder: $is_thunder, wind_speed: $wind_speed, wind_dir: $wind_dir, pressure_mm: $pressure_mm, pressure_pa: $pressure_pa, humidity: $humidity, daytime: $daytime, polar: $polar, season: $season, source: $source, soil_moisture: $soil_moisture, soil_temp: $soil_temp, uv_index: $uv_index, wind_gust: $wind_gust)';
+    return 'WheaterModel(obs_time: $obs_time, uptime: $uptime, temp: $temp, feels_like: $feels_like, temp_water: $temp_water, icon: $icon, condition: $condition, cloudness: $cloudness, prec_type: $prec_type, prec_prob: $prec_prob, prec_strength: $prec_strength, is_thunder: $is_thunder, wind_speed: $wind_speed, wind_dir: $wind_dir, pressure_mm: $pressure_mm, pressure_pa: $pressure_pa, humidity: $humidity, daytime: $daytime, polar: $polar, season: $season, source: $source, soil_moisture: $soil_moisture, soil_temp: $soil_temp, uv_index: $uv_index, wind_gust: $wind_gust, urlIcon: $urlIcon)';
   }
 
   @override
@@ -544,7 +562,8 @@ class _$WheaterModelImpl implements _WheaterModel {
             (identical(other.uv_index, uv_index) ||
                 other.uv_index == uv_index) &&
             (identical(other.wind_gust, wind_gust) ||
-                other.wind_gust == wind_gust));
+                other.wind_gust == wind_gust) &&
+            (identical(other.urlIcon, urlIcon) || other.urlIcon == urlIcon));
   }
 
   @JsonKey(ignore: true)
@@ -575,7 +594,8 @@ class _$WheaterModelImpl implements _WheaterModel {
         soil_moisture,
         soil_temp,
         uv_index,
-        wind_gust
+        wind_gust,
+        urlIcon
       ]);
 
   @JsonKey(ignore: true)
@@ -598,7 +618,7 @@ abstract class _WheaterModel implements WheaterModel {
       required final double uptime,
       required final double temp,
       required final double feels_like,
-      required final double temp_water,
+      final double temp_water,
       required final String icon,
       required final String condition,
       required final double cloudness,
@@ -618,7 +638,8 @@ abstract class _WheaterModel implements WheaterModel {
       required final double soil_moisture,
       required final double soil_temp,
       required final double uv_index,
-      required final double wind_gust}) = _$WheaterModelImpl;
+      required final double wind_gust,
+      final String urlIcon}) = _$WheaterModelImpl;
 
   factory _WheaterModel.fromJson(Map<String, dynamic> json) =
       _$WheaterModelImpl.fromJson;
@@ -673,6 +694,8 @@ abstract class _WheaterModel implements WheaterModel {
   double get uv_index;
   @override
   double get wind_gust;
+  @override
+  String get urlIcon;
   @override
   @JsonKey(ignore: true)
   _$$WheaterModelImplCopyWith<_$WheaterModelImpl> get copyWith =>

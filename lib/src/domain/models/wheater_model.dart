@@ -10,7 +10,7 @@ class WheaterModel with _$WheaterModel {
     required double uptime,
     required double temp,
     required double feels_like,
-    required double temp_water,
+    @Default(0.0) double temp_water,
     required String icon,
     required String condition,
     required double cloudness,
@@ -31,6 +31,7 @@ class WheaterModel with _$WheaterModel {
     required double soil_temp,
     required double uv_index,
     required double wind_gust,
+    @Default("") String urlIcon,
   }) = _WheaterModel;
 
   factory WheaterModel.fromJson(Map<String, dynamic> json) =>

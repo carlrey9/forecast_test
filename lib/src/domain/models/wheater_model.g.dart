@@ -12,7 +12,7 @@ _$WheaterModelImpl _$$WheaterModelImplFromJson(Map<String, dynamic> json) =>
       uptime: (json['uptime'] as num).toDouble(),
       temp: (json['temp'] as num).toDouble(),
       feels_like: (json['feels_like'] as num).toDouble(),
-      temp_water: (json['temp_water'] as num).toDouble(),
+      temp_water: (json['temp_water'] as num?)?.toDouble() ?? 0.0,
       icon: json['icon'] as String,
       condition: json['condition'] as String,
       cloudness: (json['cloudness'] as num).toDouble(),
@@ -33,6 +33,7 @@ _$WheaterModelImpl _$$WheaterModelImplFromJson(Map<String, dynamic> json) =>
       soil_temp: (json['soil_temp'] as num).toDouble(),
       uv_index: (json['uv_index'] as num).toDouble(),
       wind_gust: (json['wind_gust'] as num).toDouble(),
+      urlIcon: json['urlIcon'] as String? ?? "",
     );
 
 Map<String, dynamic> _$$WheaterModelImplToJson(_$WheaterModelImpl instance) =>
@@ -62,4 +63,5 @@ Map<String, dynamic> _$$WheaterModelImplToJson(_$WheaterModelImpl instance) =>
       'soil_temp': instance.soil_temp,
       'uv_index': instance.uv_index,
       'wind_gust': instance.wind_gust,
+      'urlIcon': instance.urlIcon,
     };
