@@ -13,4 +13,5 @@ A new Flutter Forecast Application.
 
 ## Screenshots app running
 
+![alt text](https://github.com/carlrey9/forecast_test/blob/main/sc/sc1.jpeg)
 
