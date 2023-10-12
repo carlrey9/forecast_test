@@ -1,5 +1,4 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:forecast_test/core/api/api_key.dart';
@@ -75,7 +74,7 @@ class ForecastRepositoryImpl extends ForecastRepository {
         ),
         data: {
           "query":
-              "{\n  weatherByPoint(request: { lat: 52.37175, lon: 4.89358 }) {\n    forecast {\n      days(limit: 3) {\n        time\n          parts{\n              day{\n                condition     \n                icon(format: SVG, theme: CIRCLE)            \n                maxTemperature\n                minTemperature\n              }\n          }\n      }\n    }\n  }\n}"
+              "{\n  weatherByPoint(request: { lat: 52.37175, lon: 4.89358 }) {\n    forecast {\n      days(limit: 5) {\n        time\n          parts{\n              day{\n                condition     \n                icon(format: SVG, theme: CIRCLE)            \n                maxTemperature\n                minTemperature\n              }\n          }\n      }\n    }\n  }\n}"
         },
       );
 
@@ -94,7 +93,11 @@ class ForecastRepositoryImpl extends ForecastRepository {
         wheaterMoreDays.add(wheaterNextDaysModel);
       }
       return wheaterMoreDays;
-    } catch (error) {
+    } on DioException catch (error) {
+      if (error.type == DioExceptionType.connectionError) {
+        return Future.error(
+            "Connection Error \n Please check your internet connection and try again");
+      }
       return Future.error(error);
     }
   }

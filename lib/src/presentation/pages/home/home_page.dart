@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -63,25 +61,28 @@ class _LandScapeScreen extends ConsumerWidget {
       decoration: gradientdecoration,
       child: forecast.when(
         data: ((WheaterModel wheaterModel) {
-          return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-            const BlurWidget(),
-            SafeArea(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  _TextWheater(wheaterModel),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      _Icon(wheaterModel),
-                      _TextDegrees(wheaterModel),
-                      _NextDaysBtn(),
-                    ],
-                  ),
-                ],
-              ),
-            )
-          ]);
+          return SingleChildScrollView(
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+              const BlurWidget(),
+              SafeArea(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    _TextWheater(wheaterModel),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        _Icon(wheaterModel),
+                        _TextDegrees(wheaterModel),
+                        _NextDaysBtn(),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            ]),
+          );
         }),
         error: (error, skt) {
           return Center(child: Text("$error"));
@@ -207,7 +208,7 @@ class _NextDaysBtn extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Text(
-                "More",
+                "More Days",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16,
@@ -249,9 +250,9 @@ class _Icon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
       child: SizedBox(
-        height: 200,
+        height: 150,
         child: SvgPicture.network(
           wheaterModel.urlIcon,
           height: 200,
@@ -272,10 +273,28 @@ class _TextWheater extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10),
-      child: Text(
-        wheaterModel.condition,
-        style: const TextStyle(
-            color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.5),
+                borderRadius: BorderRadius.circular(15)),
+            child: const Text(
+              "Today",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18),
+            ),
+          ),
+          Text(
+            wheaterModel.condition,
+            style: const TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold, fontSize: 24),
+          ),
+        ],
       ),
     );
   }

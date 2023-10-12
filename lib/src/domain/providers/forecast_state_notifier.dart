@@ -4,7 +4,7 @@ import 'package:forecast_test/src/domain/models/wheater_model.dart';
 
 class WheaterNotifier extends StateNotifier<AsyncValue<WheaterModel>> {
   WheaterNotifier(this.forecastRepository)
-      : super(AsyncError("No data", StackTrace.empty));
+      : super(const AsyncError("No data", StackTrace.empty));
 
   ForecastRepository forecastRepository;
   AsyncValue<WheaterModel>? previousState;
