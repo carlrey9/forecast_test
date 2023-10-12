@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:forecast_test/core/api/api_key.dart';
@@ -32,7 +33,11 @@ class ForecastRepositoryImpl extends ForecastRepository {
       wheaterModel = wheaterModel.copyWith(urlIcon: await getUrlIcon(lat, lon));
       log("data: $wheaterModel");
       return wheaterModel;
-    } catch (error) {
+    } on DioException catch (error) {
+      if (error.type == DioExceptionType.connectionError) {
+        return Future.error(
+            "Connection Error \n Please check your internet connection and try again");
+      }
       return Future.error(error);
     }
   }

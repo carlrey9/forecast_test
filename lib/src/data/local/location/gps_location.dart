@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:forecast_test/src/presentation/widgets/alert_dialog_location.dart';
+import 'package:forecast_test/src/presentation/widgets/alert_dialogs.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:go_router/go_router.dart';
 
 abstract class GPSLocation {
   Future<Position> getLocation(BuildContext context);
@@ -20,6 +21,7 @@ class GPSLocationLocator extends GPSLocation {
 
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
+      // ignore: use_build_context_synchronously
       await showDialogLocationPermition(context);
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
@@ -28,6 +30,17 @@ class GPSLocationLocator extends GPSLocation {
     }
 
     if (permission == LocationPermission.deniedForever) {
+      // ignore: use_build_context_synchronously
+      await alertDialogInfo(
+        context,
+        "Location permission",
+        "Location permissions have been denied",
+        "Ok",
+        () async {
+          context.pop();
+          permission = await Geolocator.requestPermission();
+        },
+      );
       return Future.error(
           'Location permissions are permanently denied, we cannot request permissions.');
     }

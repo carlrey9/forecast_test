@@ -16,7 +16,6 @@ class WheaterNotifier extends StateNotifier<AsyncValue<WheaterModel>> {
     try {
       WheaterModel wheaterModel =
           await forecastRepository.getWheather(lat, lon);
-
       state = AsyncValue.data(wheaterModel);
     } catch (error) {
       state = AsyncValue.error(error, StackTrace.current);

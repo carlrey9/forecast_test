@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 const gradientdecoration = BoxDecoration(
     gradient: LinearGradient(
@@ -15,3 +16,9 @@ const gradientdecoration = BoxDecoration(
     Color.fromARGB(255, 2, 135, 243),
   ],
 ));
+
+void noShadowStatusBar() {
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    statusBarColor: Colors.transparent,
+  ));
+}
