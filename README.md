@@ -10,6 +10,16 @@ A new Flutter Forecast Application.
 #### 2. add **api_key.dart** file in **/lib/core/api**
 #### 3. run application
 
+## Use Guide
+#### 1. Open the application.
+#### 2. Push the button refresh, to updated the information
+#### 3. If You have internet You will see the forecast information for today
+#### 4. You can see one more button "More Days" if you push that button, You will go to the second screen and see the forecast for the next days.
+#### 5. You are able to rotate the cellphone and the design will adapt 
+
+
+
+
 
 ## Screenshots app running
 
