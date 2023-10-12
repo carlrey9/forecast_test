@@ -10,7 +10,7 @@ Future showDialogLocationPermition(BuildContext context) async {
       size: 30,
     ),
     content: SizedBox(
-      height: 150,
+      height: 180,
       child: Column(
         children: [
           const Text(
